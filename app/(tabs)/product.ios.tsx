@@ -11,6 +11,8 @@ export default function ProductScreen() {
   const router = useRouter();
   const webViewRef = useRef<WebView>(null);
   const [loading, setLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingStage, setLoadingStage] = useState('Initializing...');
   const [error, setError] = useState<string | null>(null);
   const [currentUrl, setCurrentUrl] = useState<string>('');
 
@@ -20,15 +22,35 @@ export default function ProductScreen() {
   console.log('ProductScreen iOS - Loading URL:', productUrl);
   console.log('ProductScreen iOS - Product Name:', productName);
 
+  const getLoadingStage = (progress: number) => {
+    if (progress < 0.1) return 'Connecting to server...';
+    if (progress < 0.3) return 'Loading page resources...';
+    if (progress < 0.5) return 'Downloading content...';
+    if (progress < 0.7) return 'Processing scripts...';
+    if (progress < 0.9) return 'Rendering page...';
+    return 'Almost ready...';
+  };
+
   const handleLoadStart = () => {
     console.log('WebView iOS - Load started');
     setLoading(true);
+    setLoadingProgress(0);
+    setLoadingStage('Initializing...');
     setError(null);
+  };
+
+  const handleLoadProgress = (event: any) => {
+    const progress = event.nativeEvent.progress;
+    console.log('WebView iOS - Load progress:', Math.round(progress * 100) + '%');
+    setLoadingProgress(progress);
+    setLoadingStage(getLoadingStage(progress));
   };
 
   const handleLoadEnd = () => {
     console.log('WebView iOS - Load ended');
     setLoading(false);
+    setLoadingProgress(1);
+    setLoadingStage('Complete!');
   };
 
   const handleError = (syntheticEvent: any) => {
@@ -99,7 +121,19 @@ export default function ProductScreen() {
       {loading && !error && (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={colors.primary} />
+          <Text style={styles.loadingPercentage}>
+            {Math.round(loadingProgress * 100)}%
+          </Text>
           <Text style={styles.loadingText}>Loading {productName}...</Text>
+          <Text style={styles.loadingStage}>{loadingStage}</Text>
+          <View style={styles.progressBarContainer}>
+            <View 
+              style={[
+                styles.progressBar, 
+                { width: `${loadingProgress * 100}%` }
+              ]} 
+            />
+          </View>
           <Text style={styles.urlText}>{productUrl}</Text>
         </View>
       )}
@@ -124,6 +158,7 @@ export default function ProductScreen() {
         source={{ uri: productUrl }}
         style={styles.webview}
         onLoadStart={handleLoadStart}
+        onLoadProgress={handleLoadProgress}
         onLoadEnd={handleLoadEnd}
         onError={handleError}
         onHttpError={handleHttpError}
@@ -204,15 +239,42 @@ const styles = StyleSheet.create({
     zIndex: 1,
     paddingHorizontal: 20,
   },
+  loadingPercentage: {
+    marginTop: 20,
+    fontSize: 48,
+    fontWeight: '800',
+    color: colors.primary,
+    textAlign: 'center',
+  },
   loadingText: {
-    marginTop: 16,
+    marginTop: 12,
     fontSize: 18,
     fontWeight: '600',
     color: colors.text,
     textAlign: 'center',
   },
-  urlText: {
+  loadingStage: {
     marginTop: 8,
+    fontSize: 14,
+    fontWeight: '500',
+    color: colors.textSecondary,
+    textAlign: 'center',
+  },
+  progressBarContainer: {
+    width: '80%',
+    height: 6,
+    backgroundColor: colors.highlight,
+    borderRadius: 3,
+    marginTop: 20,
+    overflow: 'hidden',
+  },
+  progressBar: {
+    height: '100%',
+    backgroundColor: colors.primary,
+    borderRadius: 3,
+  },
+  urlText: {
+    marginTop: 16,
     fontSize: 12,
     color: colors.textSecondary,
     textAlign: 'center',

@@ -5,7 +5,7 @@ import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 
 export default function ContactScreen() {
-  const socialLinks = [
+  const externalLinks = [
     {
       id: '1',
       name: 'Instagram',
@@ -24,19 +24,29 @@ export default function ContactScreen() {
     },
     {
       id: '3',
-      name: 'Website',
+      name: 'SpeedingFinger',
       handle: 'speedingfinger.com',
       url: 'https://www.speedingfinger.com',
-      icon: '🌐',
-      description: 'Visit our main website',
+      icon: '⌨️',
+      description: 'Typing practice and language learning',
+    },
+    {
+      id: '4',
+      name: 'Idle Empire',
+      handle: 'idle-empire.base44.app',
+      url: 'https://idle-empire-33e48bc6.base44.app',
+      icon: '👑',
+      description: 'Web-based MMORPG idle game',
     },
   ];
 
-  const handleLinkPress = async (url: string) => {
+  const handleLinkPress = async (url: string, name: string) => {
     try {
+      console.log('Opening external link:', url);
       const supported = await Linking.canOpenURL(url);
       if (supported) {
         await Linking.openURL(url);
+        console.log('Successfully opened:', name);
       } else {
         console.log('Cannot open URL:', url);
       }
@@ -48,8 +58,8 @@ export default function ContactScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Social Links</Text>
-        <Text style={styles.subtitle}>Connect with us</Text>
+        <Text style={styles.title}>External Links</Text>
+        <Text style={styles.subtitle}>Connect with us and explore our products</Text>
       </View>
       <ScrollView
         style={styles.scrollView}
@@ -59,28 +69,28 @@ export default function ContactScreen() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Follow & Connect</Text>
           <Text style={styles.sectionDescription}>
-            Stay updated with our latest projects, join our community, and get in touch!
+            Stay updated with our latest projects, join our community, and explore our products in your browser!
           </Text>
         </View>
 
-        {socialLinks.map((link) => (
+        {externalLinks.map((link) => (
           <TouchableOpacity
             key={link.id}
-            style={styles.socialCard}
-            onPress={() => handleLinkPress(link.url)}
+            style={styles.linkCard}
+            onPress={() => handleLinkPress(link.url, link.name)}
             activeOpacity={0.7}
           >
-            <View style={styles.socialIconContainer}>
-              <Text style={styles.socialIcon}>{link.icon}</Text>
+            <View style={styles.linkIconContainer}>
+              <Text style={styles.linkIcon}>{link.icon}</Text>
             </View>
-            <View style={styles.socialTextContainer}>
-              <Text style={styles.socialName}>{link.name}</Text>
-              <Text style={styles.socialHandle}>{link.handle}</Text>
-              <Text style={styles.socialDescription}>{link.description}</Text>
+            <View style={styles.linkTextContainer}>
+              <Text style={styles.linkName}>{link.name}</Text>
+              <Text style={styles.linkHandle}>{link.handle}</Text>
+              <Text style={styles.linkDescription}>{link.description}</Text>
             </View>
             <IconSymbol
-              ios_icon_name="chevron.right"
-              android_material_icon_name="chevron_right"
+              ios_icon_name="arrow.up.right"
+              android_material_icon_name="open_in_new"
               size={24}
               color={colors.textSecondary}
             />
@@ -89,10 +99,10 @@ export default function ContactScreen() {
 
         <View style={styles.infoSection}>
           <View style={styles.infoCard}>
-            <Text style={styles.infoIcon}>💡</Text>
-            <Text style={styles.infoTitle}>Stay Connected</Text>
+            <Text style={styles.infoIcon}>🌐</Text>
+            <Text style={styles.infoTitle}>Open in Browser</Text>
             <Text style={styles.infoText}>
-              Join our community to get the latest updates, share feedback, and connect with other users of our products.
+              Tap any link above to open it in your device&apos;s default browser for the full experience.
             </Text>
           </View>
         </View>
@@ -143,7 +153,7 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     lineHeight: 22,
   },
-  socialCard: {
+  linkCard: {
     backgroundColor: colors.card,
     borderRadius: 16,
     padding: 16,
@@ -155,7 +165,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 12,
   },
-  socialIconContainer: {
+  linkIconContainer: {
     width: 60,
     height: 60,
     borderRadius: 12,
@@ -164,24 +174,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 16,
   },
-  socialIcon: {
+  linkIcon: {
     fontSize: 28,
   },
-  socialTextContainer: {
+  linkTextContainer: {
     flex: 1,
   },
-  socialName: {
+  linkName: {
     fontSize: 18,
     fontWeight: '700',
     color: colors.text,
     marginBottom: 4,
   },
-  socialHandle: {
+  linkHandle: {
     fontSize: 14,
     color: colors.primary,
     marginBottom: 2,
   },
-  socialDescription: {
+  linkDescription: {
     fontSize: 13,
     color: colors.textSecondary,
   },
