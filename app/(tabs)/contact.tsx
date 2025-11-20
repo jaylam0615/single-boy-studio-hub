@@ -12,6 +12,7 @@ export default function ContactScreen() {
       handle: '@singleboystudio',
       url: 'https://instagram.com/singleboystudio',
       icon: '📸',
+      description: 'Follow us for updates',
     },
     {
       id: '2',
@@ -19,13 +20,15 @@ export default function ContactScreen() {
       handle: 'Join our community',
       url: 'https://discord.gg/singleboystudio',
       icon: '💬',
+      description: 'Chat with the community',
     },
     {
       id: '3',
       name: 'Website',
-      handle: 'singleboystudio.com',
-      url: 'https://singleboystudio.com',
+      handle: 'speedingfinger.com',
+      url: 'https://www.speedingfinger.com',
       icon: '🌐',
+      description: 'Visit our main website',
     },
   ];
 
@@ -45,8 +48,8 @@ export default function ContactScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Contact & Socials</Text>
-        <Text style={styles.subtitle}>Connect with Single Boy Studio</Text>
+        <Text style={styles.title}>Social Links</Text>
+        <Text style={styles.subtitle}>Connect with us</Text>
       </View>
       <ScrollView
         style={styles.scrollView}
@@ -54,46 +57,42 @@ export default function ContactScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Follow Us</Text>
-          {socialLinks.map((link) => (
-            <TouchableOpacity
-              key={link.id}
-              style={styles.socialCard}
-              onPress={() => handleLinkPress(link.url)}
-              activeOpacity={0.7}
-            >
-              <View style={styles.socialIconContainer}>
-                <Text style={styles.socialIcon}>{link.icon}</Text>
-              </View>
-              <View style={styles.socialTextContainer}>
-                <Text style={styles.socialName}>{link.name}</Text>
-                <Text style={styles.socialHandle}>{link.handle}</Text>
-              </View>
-              <IconSymbol
-                ios_icon_name="chevron.right"
-                android_material_icon_name="chevron_right"
-                size={24}
-                color={colors.textSecondary}
-              />
-            </TouchableOpacity>
-          ))}
+          <Text style={styles.sectionTitle}>Follow & Connect</Text>
+          <Text style={styles.sectionDescription}>
+            Stay updated with our latest projects, join our community, and get in touch!
+          </Text>
         </View>
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>About</Text>
-          <View style={styles.aboutCard}>
-            <Text style={styles.aboutText}>
-              Single Boy Studio is dedicated to creating engaging games, tools, and web experiences. 
-              We&apos;re passionate about building quality software that brings joy to users around the world.
-            </Text>
-          </View>
-        </View>
+        {socialLinks.map((link) => (
+          <TouchableOpacity
+            key={link.id}
+            style={styles.socialCard}
+            onPress={() => handleLinkPress(link.url)}
+            activeOpacity={0.7}
+          >
+            <View style={styles.socialIconContainer}>
+              <Text style={styles.socialIcon}>{link.icon}</Text>
+            </View>
+            <View style={styles.socialTextContainer}>
+              <Text style={styles.socialName}>{link.name}</Text>
+              <Text style={styles.socialHandle}>{link.handle}</Text>
+              <Text style={styles.socialDescription}>{link.description}</Text>
+            </View>
+            <IconSymbol
+              ios_icon_name="chevron.right"
+              android_material_icon_name="chevron_right"
+              size={24}
+              color={colors.textSecondary}
+            />
+          </TouchableOpacity>
+        ))}
 
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Support</Text>
-          <View style={styles.aboutCard}>
-            <Text style={styles.aboutText}>
-              For support inquiries, please reach out to us through our social media channels or visit our website.
+        <View style={styles.infoSection}>
+          <View style={styles.infoCard}>
+            <Text style={styles.infoIcon}>💡</Text>
+            <Text style={styles.infoTitle}>Stay Connected</Text>
+            <Text style={styles.infoText}>
+              Join our community to get the latest updates, share feedback, and connect with other users of our products.
             </Text>
           </View>
         </View>
@@ -131,13 +130,18 @@ const styles = StyleSheet.create({
     paddingBottom: 120,
   },
   section: {
-    marginBottom: 32,
+    marginBottom: 24,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: '700',
     color: colors.text,
-    marginBottom: 16,
+    marginBottom: 8,
+  },
+  sectionDescription: {
+    fontSize: 15,
+    color: colors.textSecondary,
+    lineHeight: 22,
   },
   socialCard: {
     backgroundColor: colors.card,
@@ -150,8 +154,8 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   socialIconContainer: {
-    width: 50,
-    height: 50,
+    width: 60,
+    height: 60,
     borderRadius: 12,
     backgroundColor: colors.highlight,
     justifyContent: 'center',
@@ -159,7 +163,7 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   socialIcon: {
-    fontSize: 24,
+    fontSize: 28,
   },
   socialTextContainer: {
     flex: 1,
@@ -172,18 +176,39 @@ const styles = StyleSheet.create({
   },
   socialHandle: {
     fontSize: 14,
+    color: colors.primary,
+    marginBottom: 2,
+  },
+  socialDescription: {
+    fontSize: 13,
     color: colors.textSecondary,
   },
-  aboutCard: {
+  infoSection: {
+    marginTop: 24,
+  },
+  infoCard: {
     backgroundColor: colors.card,
     borderRadius: 16,
     padding: 20,
+    alignItems: 'center',
     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
     elevation: 4,
   },
-  aboutText: {
-    fontSize: 15,
+  infoIcon: {
+    fontSize: 40,
+    marginBottom: 12,
+  },
+  infoTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.text,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  infoText: {
+    fontSize: 14,
     color: colors.textSecondary,
-    lineHeight: 22,
+    lineHeight: 20,
+    textAlign: 'center',
   },
 });

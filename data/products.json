@@ -2,37 +2,16 @@
 [
   {
     "id": "1",
-    "name": "Speeding Finger",
-    "description": "Test your typing speed and accuracy",
-    "url": "https://speedingfinger.com",
-    "icon": "⚡"
+    "name": "SpeedingFinger",
+    "description": "Typing practice and language learning platform.",
+    "url": "https://www.speedingfinger.com",
+    "icon": "⌨️"
   },
   {
     "id": "2",
-    "name": "Medieval Trading Game",
-    "description": "Trade goods in a medieval marketplace",
-    "url": "https://example.com/medieval-trading",
-    "icon": "🏰"
-  },
-  {
-    "id": "3",
-    "name": "Anime Chronicles",
-    "description": "Explore the world of anime",
-    "url": "https://example.com/anime-chronicles",
-    "icon": "📺"
-  },
-  {
-    "id": "4",
-    "name": "Virus War Game",
-    "description": "Strategic virus warfare simulation",
-    "url": "https://example.com/virus-war",
-    "icon": "🦠"
-  },
-  {
-    "id": "5",
-    "name": "My Portfolio",
-    "description": "View my work and projects",
-    "url": "https://example.com/portfolio",
-    "icon": "💼"
+    "name": "Idle Empire",
+    "description": "A web-based MMORPG idle game.",
+    "url": "https://idle-empire-33e48bc6.base44.app",
+    "icon": "👑"
   }
 ]

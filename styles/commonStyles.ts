@@ -1,8 +1,8 @@
 
-import { StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const colors = {
-  background: '#121212',
+  background: '#111111',
   text: '#FFFFFF',
   textSecondary: '#B0B0B0',
   primary: '#BB86FC',

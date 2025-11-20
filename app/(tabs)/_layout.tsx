@@ -12,16 +12,16 @@ export default function TabLayout() {
       label: 'Home',
     },
     {
-      name: 'news',
-      route: '/(tabs)/news',
-      icon: 'newspaper',
-      label: 'News',
+      name: 'about',
+      route: '/(tabs)/about',
+      icon: 'info',
+      label: 'About',
     },
     {
       name: 'contact',
       route: '/(tabs)/contact',
-      icon: 'mail',
-      label: 'Contact',
+      icon: 'share',
+      label: 'Social',
     },
   ];
 
@@ -34,7 +34,7 @@ export default function TabLayout() {
         }}
       >
         <Stack.Screen key="home" name="(home)" />
-        <Stack.Screen key="news" name="news" />
+        <Stack.Screen key="about" name="about" />
         <Stack.Screen key="contact" name="contact" />
         <Stack.Screen 
           key="product" 
