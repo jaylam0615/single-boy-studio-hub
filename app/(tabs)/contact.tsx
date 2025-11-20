@@ -2,15 +2,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Platform } from 'react-native';
 import { colors } from '@/styles/commonStyles';
-import { IconSymbol } from '@/components/IconSymbol';
 
 export default function ContactScreen() {
   const externalLinks = [
     {
       id: '1',
       name: 'Instagram',
-      handle: '@singleboystudio',
-      url: 'https://instagram.com/singleboystudio',
+      handle: 'single boy_studio',
+      url: 'https://instagram.com/single_boy_studio',
       icon: '📸',
       description: 'Follow us for updates',
     },
@@ -18,7 +17,7 @@ export default function ContactScreen() {
       id: '2',
       name: 'Discord',
       handle: 'Join our community',
-      url: 'https://discord.gg/singleboystudio',
+      url: 'https://discord.gg/YwrFtyMg7V',
       icon: '💬',
       description: 'Chat with the community',
     },
@@ -88,16 +87,23 @@ export default function ContactScreen() {
               <Text style={styles.linkHandle}>{link.handle}</Text>
               <Text style={styles.linkDescription}>{link.description}</Text>
             </View>
-            <IconSymbol
-              ios_icon_name="arrow.up.right"
-              android_material_icon_name="open_in_new"
-              size={24}
-              color={colors.textSecondary}
-            />
           </TouchableOpacity>
         ))}
 
         <View style={styles.infoSection}>
+          <View style={styles.infoCard}>
+            <Text style={styles.infoIcon}>📱</Text>
+            <Text style={styles.infoTitle}>Add to Home Screen</Text>
+            <Text style={styles.infoText}>
+              For the best experience, add this app to your home screen!{'\n\n'}
+              <Text style={styles.bold}>How to add:</Text>{'\n'}
+              1. Tap the share button at the bottom of the screen (middle button){'\n'}
+              2. Scroll down and tap &quot;Add to Home Screen&quot;{'\n'}
+              3. Tap &quot;Add&quot; to confirm{'\n\n'}
+              Note: By default, this app opens in webpage format. Adding it to your home screen gives you quick access!
+            </Text>
+          </View>
+
           <View style={styles.infoCard}>
             <Text style={styles.infoIcon}>🌐</Text>
             <Text style={styles.infoTitle}>Open in Browser</Text>
@@ -201,6 +207,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 20,
     alignItems: 'center',
+    marginBottom: 16,
     boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
     elevation: 4,
   },
@@ -220,5 +227,9 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     lineHeight: 20,
     textAlign: 'center',
+  },
+  bold: {
+    fontWeight: '700',
+    color: colors.text,
   },
 });

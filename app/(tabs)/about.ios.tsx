@@ -46,7 +46,8 @@ export default function AboutScreen() {
             <Text style={styles.cardTitle}>Our Products</Text>
             <Text style={styles.cardText}>
               <Text style={styles.bold}>SpeedingFinger</Text> - A comprehensive typing practice and language learning platform designed to help users improve their typing speed and accuracy while learning new languages.{'\n\n'}
-              <Text style={styles.bold}>Idle Empire</Text> - An immersive web-based MMORPG idle game where players build their empire, collect resources, and compete with others in a persistent online world.
+              <Text style={styles.bold}>Idle Empire</Text> - An immersive web-based MMORPG idle game where players build their empire, collect resources, and compete with others in a persistent online world.{'\n\n'}
+              <Text style={styles.bold}>Roblox Anime Game</Text> - This product will be released around the end of December 2025 to the end of January 2026. It&apos;s my first big project and it&apos;s taking time to learn a new game creation platform. It&apos;s an Action RPG + Simulator + Open-world Adventure style with anime characters.
             </Text>
           </View>
 
