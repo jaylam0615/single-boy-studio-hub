@@ -1,43 +1,56 @@
-import React from "react";
-import { Stack } from "expo-router";
-import { FlatList, StyleSheet, View } from "react-native";
-import { useTheme } from "@react-navigation/native";
-import { modalDemos } from "@/components/homeData";
-import { DemoCard } from "@/components/DemoCard";
-import { HeaderRightButton, HeaderLeftButton } from "@/components/HeaderButtons";
+
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { colors } from '@/styles/commonStyles';
+import ProductCard from '@/components/ProductCard';
+import productsData from '@/data/products.json';
 
 export default function HomeScreen() {
-  const theme = useTheme();
-
   return (
-    <>
-      <Stack.Screen
-        options={{
-          title: "Building the app...",
-          headerRight: () => <HeaderRightButton />,
-          headerLeft: () => <HeaderLeftButton />,
-        }}
-      />
-      <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-        <FlatList
-          data={modalDemos}
-          renderItem={({ item }) => <DemoCard item={item} />}
-          keyExtractor={(item) => item.route}
-          contentContainerStyle={styles.listContainer}
-          contentInsetAdjustmentBehavior="automatic"
-          showsVerticalScrollIndicator={false}
-        />
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Single Boy Studio Hub</Text>
+        <Text style={styles.subtitle}>Explore all my products</Text>
       </View>
-    </>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {productsData.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.background,
   },
-  listContainer: {
-    paddingVertical: 16,
-    paddingHorizontal: 16,
+  header: {
+    paddingTop: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+    backgroundColor: colors.background,
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: '800',
+    color: colors.text,
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: colors.textSecondary,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingHorizontal: 20,
+    paddingBottom: 40,
   },
 });
